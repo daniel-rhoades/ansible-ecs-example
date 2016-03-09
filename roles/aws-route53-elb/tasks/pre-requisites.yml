@@ -1,0 +1,15 @@
+- name: "AWS | ELB | Check zone name has been defined (route53_zone)"
+  fail: msg="You must specify the name of the zone you wish to define, e.g. example.com"
+  when: route53_zone is undefined
+
+- name: "AWS | ELB | Check the host has been defined (route_53_host)"
+  fail: msg="You must specify the name of the host you wish to define on the zone, e.g. www.example.com"
+  when: route53_host is undefined
+
+- name: "AWS | ELB | Check the ELB has been defined (route53_elb_name)"
+  fail: msg="You must specify the name of the ELB you wish to define the A record for, e.g. my-elb"
+  when: route53_elb_name is undefined
+
+- name: "AWS | ELB | Check the ELB Hosted Zone ID has been defined (route53_elb_name_zone_id)"
+  fail: msg="You must specify the name of the ELB hosted zone ID you wish to define the A record for, e.g. Z14Z123456ABC"
+  when: route53_elb_name_zone_id is undefined

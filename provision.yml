@@ -59,6 +59,15 @@
          ]
       }
 
+    # Provision Route 53 with an alias for the ELB
+    - {
+        role: aws-route53-elb,
+        route53_zone: "{{ my_route53_zone }}",
+        route53_host: "simple-app.{{ application_name }}.{{ my_route53_zone }}",
+        route53_elb_dns_name: "{{ elb.elb.dns_name }}",
+        route53_elb_name_zone_id: "{{ elb.elb.hosted_zone_id }}"
+      }
+
 - name: ECS Example | Configure and run an example Docker container
   hosts: localhost
   connection: local
