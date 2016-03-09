@@ -12,6 +12,11 @@ ec2_instance_name: ecs_host
 
 ec2_instance_count: 2
 
+ec2_tags:
+  - component: "{{ ec2_instance_name }}"
+    Name: "{{ vpc_name }}_{{ ec2_instance_name }}"
+    env: "{{ env }}"
+
 inbound_security_groups:
   - sg_name: inbound-app
     sg_description: allow http and https access

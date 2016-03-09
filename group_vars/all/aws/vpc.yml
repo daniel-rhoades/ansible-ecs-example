@@ -2,35 +2,35 @@
 #
 # Variables for VPC
 #
-vpc_name: "{{ application }}-vpc"
-vpc_region: "{{ region }}"
-vpc_cidr_block: "172.40.0.0/16"
+my_vpc_name: "{{ application }}-vpc"
+my_vpc_region: "{{ my_region }}"
+my_vpc_cidr_block: "172.40.0.0/16"
 
 # Docker Cluster (2 AZs)
 subnet_ecscluster_cidr_block_1: "172.40.10.0/24"
-subnet_ecscluster_az_1: "{{ vpc_region }}a"
+subnet_ecscluster_az_1: "{{ my_vpc_region }}a"
 
 subnet_ecscluster_cidr_block_2: "172.40.20.0/24"
-subnet_ecscluster_az_2: "{{ vpc_region }}b"
+subnet_ecscluster_az_2: "{{ my_vpc_region }}b"
 
 #
 # Subnets definitions for the VPC
 #
 # *** DO NOT CHANGE ORDER WITHOUT UPDATING provisioning/networking/aws/tasks/vpc.yml ***
 #
-vpc_subnets:
+my_vpc_subnets:
  - cidr: "{{ subnet_ecscluster_cidr_block_1 }}"
    az: "{{ subnet_ecscluster_az_1 }}"
-   resource_tags: { "Name":"{{ vpc_name }}-{{ subnet_ecscluster_az_1 }}-ecscluster-subnet" }
+   resource_tags: { "Name":"{{ my_vpc_name }}-{{ subnet_ecscluster_az_1 }}-ecscluster-subnet" }
 
  - cidr: "{{ subnet_ecscluster_cidr_block_2 }}"
    az: "{{ subnet_ecscluster_az_2 }}"
-   resource_tags: { "Name":"{{ vpc_name }}-{{ subnet_ecscluster_az_2 }}-ecscluster-subnet" }
+   resource_tags: { "Name":"{{ my_vpc_name }}-{{ subnet_ecscluster_az_2 }}-ecscluster-subnet" }
 
 #
 # Routing tables for public subnets
 #
-public_subnet_routes:
+my_public_subnet_routes:
  - subnets:
      - "{{ subnet_ecscluster_cidr_block_1 }}"
      - "{{ subnet_ecscluster_cidr_block_2 }}"

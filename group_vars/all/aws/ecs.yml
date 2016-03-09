@@ -3,10 +3,10 @@
 # ECS variables
 #
 
-ecs_cluster_name: "{{ application_name }}"
+my_ecs_cluster_name: "{{ application_name }}"
 
-ecs_task_definition_family: "{{ ecs_cluster_name }}-simpleapp"
+my_ecs_task_definition_family: "{{ my_ecs_cluster_name }}-simpleapp"
 
-ecs_service_name: "{{ ecs_task_definition_family }}-service"
-ecs_service_version: "1"
-ecs_task_definition_count: 1
+my_ecs_service_name: "{{ my_ecs_task_definition_family }}-service"
+my_ecs_service_version: "2"
+my_ecs_task_definition_count: 1
