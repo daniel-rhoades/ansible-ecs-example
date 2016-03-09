@@ -1,0 +1,42 @@
+---
+#
+# Variables for the EC2 instances
+#
+key_name: "{{ ssh_key_name }}"
+
+ec2_instance_type: t2.micro
+
+ec2_ami_id: ami-76e95b05
+
+ec2_instance_name: ecs_host
+
+ec2_instance_count: 2
+
+inbound_security_groups:
+  - sg_name: inbound-app
+    sg_description: allow http and https access
+    sg_rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+
+      - proto: tcp
+        from_port: 8080
+        to_port: 8080
+        cidr_ip: 0.0.0.0/0
+
+  - sg_name: inbound-ssh
+    sg_description: allow ssh access
+    sg_rules:
+     - proto: tcp
+       from_port: 22
+       to_port: 22
+       cidr_ip: 0.0.0.0/0
+
+outbound_security_groups:
+  - sg_name: outbound-all
+    sg_description: allows all outbound traffic
+    sg_rules:
+      - proto: all
+        cidr_ip: 0.0.0.0/0

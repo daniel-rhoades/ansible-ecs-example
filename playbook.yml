@@ -1,0 +1,13 @@
+---
+- name: ECS Example | Provision all required infrastructure
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: ECS Example | Provision networking infrastructure
+      include: provision/networking/provision-networking-aws.yml
+      tags: ['provision', 'networking']
+
+    - name: ECS Example | Provision server infrastructure
+      include: provision/servers/provision-servers-aws.yml
+      tags: ['provision', 'servers']
