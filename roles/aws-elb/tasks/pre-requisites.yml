@@ -1,0 +1,15 @@
+- name: "AWS | ELB | Check ELB name has been defined (elb_name)"
+  fail: msg="You must specify the name of the ELB you wish to create, e.g. my-elb"
+  when: elb_name is undefined
+
+- name: "AWS | ELB | Check ELB security groups have been defined (elb_security_groups)"
+  fail: msg="You must specify the security groups to be applied to the ELB you wish to create, see README for more information"
+  when: elb_security_groups is undefined
+
+- name: "AWS | ELB | Check ELB region has been defined (elb_region)"
+  fail: msg="You must specify the region you wish to create the ELB within"
+  when: elb_region is undefined
+
+- name: "AWS | ELB | Check ELB security groups have been defined (elb_subnets)"
+  fail: msg="You must specify the subnets you wish to make the ELB available within"
+  when: elb_subnets is undefined

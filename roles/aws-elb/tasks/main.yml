@@ -1,0 +1,17 @@
+# Check pre-requisites
+- include: pre-requisites.yml
+
+- name: "AWS | ELB | Create an ELB service"
+  local_action:
+    module: ec2_elb_lb
+    name: "{{ elb_name }}"
+    security_group_ids: "{{ elb_security_groups }}"
+    state: present
+    region: "{{ elb_region }}"
+    subnets: "{{ elb_subnets }}"
+    purge_subnets: "{{ elb_purge_subnets }}"
+    cross_az_load_balancing: "{{ elb_cross_az_load_balancing }}"
+    connection_draining_timeout: "{{ elb_connection_draining_timeout }}"
+    listeners: "{{ elb_listeners }}"
+    health_check: "{{ elb_health_check }}"
+  register: elb

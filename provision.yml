@@ -44,6 +44,21 @@
         vpc_name: "{{ my_vpc_name }}"
       }
 
+    # Provision an ELB
+    - {
+        role: aws-elb,
+        elb_name: "{{ my_elb_name }}",
+        vpc_name: "{{ my_vpc_name }}",
+        elb_security_groups: [
+          "{{ ec2_group_inbound_sg.results[0].group_id }}"
+          ],
+        elb_region: "{{ my_elb_region }}",
+        elb_subnets: [
+           "{{ vpc.subnets[0].id }}",
+           "{{ vpc.subnets[1].id }}"
+         ]
+      }
+
 - name: ECS Example | Configure and run an example Docker container
   hosts: localhost
   connection: local
@@ -91,3 +106,8 @@
         cluster: "{{ my_ecs_cluster_name }}"
         task_definition: "{{ my_ecs_task_definition_family }}:{{ my_ecs_service_version }}"
         desired_count: "{{ my_ecs_task_definition_count }}"
+        role: "{{ my_ecs_iam_role }}"
+        load_balancers:
+          - loadBalancerName: "{{ my_elb_name }}"
+            containerName: "simple-app"
+            containerPort: 80
