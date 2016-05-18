@@ -1,6 +1,0 @@
-#
-# Tags to apply to AWS components that have been provisioned/modified by this Playbook
-#
-
-env: development
-application: "{{ application_name }}"

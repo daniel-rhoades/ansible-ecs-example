@@ -1,4 +1,0 @@
-# Tags to set on the security groups
-security_group_resource_tags: {
-  "Name": "{{ item.item.sg_name }}"
-  }

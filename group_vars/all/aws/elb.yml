@@ -1,3 +1,0 @@
----
-my_elb_name: "ecsexample-elb"
-my_elb_region: "{{ my_region }}"
